@@ -1,0 +1,121 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        tools:context="org.pondar.pacmankotlin.MainActivity"
+        android:id="@+id/buttons"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray"
+        style="?android:attr/buttonBarStyle">
+
+        <Button
+            android:id="@+id/moveLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/move_left"
+            android:textColor="#fff"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/moveRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/move_right"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:textColor="#fff"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/moveUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/move_up"
+            android:textColor="#fff"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/moveDown"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/move_down"
+            android:textColor="#fff" />
+
+
+        <!-- Notice how the custom view is referenced here with
+        a full package path-->
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@+id/pointsView"
+        android:text="@string/play" />
+
+    <Button
+        android:id="@+id/pauseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@+id/playButton"
+        android:text="@string/pause" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@+id/pauseButton"
+        android:text="@string/reset" />
+
+    <org.pondar.pacmankotlin.GameView
+        android:id="@+id/gameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/buttons"
+        android:layout_below="@+id/playButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginBottom="0dp">
+
+    </org.pondar.pacmankotlin.GameView>
+
+    <TextView
+        android:id="@+id/pointsView"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/points"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/gameView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:text="@string/textview" />
+
+</RelativeLayout>
