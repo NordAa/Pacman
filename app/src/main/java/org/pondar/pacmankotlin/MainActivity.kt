@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var myTimer: Timer = Timer()
     var counter : Int = 0
 
+    private var myDownTimer: Timer = Timer()
+    var downCounter : Int = 30
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -36,6 +39,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             override fun run() {
                 timerMethod()
             } }, 20, 200)
+
+        //this timer for countdown
+        myDownTimer.schedule(object : TimerTask() {
+            override fun run() {
+                downTimerMethod()
+            }
+
+        }, 0, 1000) //0 indicates we start now, 1000 is for each second
 
         game = Game(this,pointsView)
 
@@ -62,28 +73,44 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onStop() {
         super.onStop()
         myTimer.cancel()
+        myDownTimer.cancel()
     }
 
     private fun timerMethod() {
         this.runOnUiThread(timerTick)
     }
 
+    private  fun downTimerMethod() {
+        this.runOnUiThread(downTimerTick)
+    }
 
     private val timerTick = Runnable {
         if (game?.running == true) {
             counter++
             textView.text = getString(R.string.timerValue,counter)
             if (game?.direction == 1) {
-              game?.movePacmanLeft(20)
+              game?.movePacmanLeft(30)
             }
             else if (game?.direction == 2) {
-                game?.movePacmanRight(20)
+                game?.movePacmanRight(30)
             }
             else if (game?.direction == 3) {
-                game?.movePacmanUp(20)
+                game?.movePacmanUp(30)
             }
             else if (game?.direction == 4) {
-                game?.movePacmanDown(20)
+                game?.movePacmanDown(30)
+            }
+        }
+    }
+
+    private val downTimerTick = Runnable {
+        if (game?.running == true) {
+            downCounter--
+            textView2.text = getString(R.string.downTimerValue, downCounter)
+            if (downCounter == 0) {
+                Toast.makeText(this, "GAME OVER!!", Toast.LENGTH_SHORT).show()
+                game?.running = false
+                downCounter = 30
             }
         }
     }
@@ -105,9 +132,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         } else if (id == R.id.action_newGame) {
             Toast.makeText(this, "New Game clicked", Toast.LENGTH_LONG).show()
             counter = 0
+            downCounter = 30
             game?.newGame()
             game?.running = false
             textView.text = getString(R.string.timerValue,counter)
+            textView2.text = getString(R.string.downTimerValue, downCounter)
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -120,9 +149,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             game?.running = false
         } else if (v?.id == R.id.resetButton) {
             counter = 0
+            downCounter = 30
             game?.newGame() //you should call the newGame method instead of this
             game?.running = false
             textView.text = getString(R.string.timerValue,counter)
+            textView2.text= getString(R.string.downTimerValue, downCounter)
             Toast.makeText(this, "Time is Reset", Toast.LENGTH_LONG).show()
         }
     }

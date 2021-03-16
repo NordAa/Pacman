@@ -70,7 +70,7 @@ class Game(private var context: Context,view: TextView) {
 
         val random = Random()
 
-        for (i in 0..1) {
+        for (i in 0..11) {
             var randomX: Int = random.nextInt( maxX - minX + 1) + minX
             var randomY: Int = random.nextInt( maxY - minY + 1) + minY
             coins.add(GoldCoin(randomX, randomY, false))
@@ -87,10 +87,11 @@ class Game(private var context: Context,view: TextView) {
         //reset the points
         coins.clear()
         coinsInitialized = false
+        mainActivity?.counter = 0
+        mainActivity?.downCounter = 30
         points = 0
         pointsView.text = "${context.resources.getString(R.string.points)} $points"
         gameView?.invalidate() //redraw screen
-        mainActivity?.counter = 0
         running = false
     }
 
@@ -155,7 +156,8 @@ class Game(private var context: Context,view: TextView) {
                 points += 1
                 pointsView.text = "${context.resources.getString(R.string.points)} $points"
             }
-            if (points == coins.size && coin.taken == true) {
+            if (points == coins.size && coin.taken) {
+                Toast.makeText(this.context, "You Got them all!", Toast.LENGTH_LONG).show()
                 return newGame()
             }
         }
