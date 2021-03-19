@@ -276,7 +276,7 @@ class Game(private var context: Context, view: TextView, view2: TextView, view3:
         for (enemy in enemies) {
             if (pacx + pacBitmap.width >= enemy.enemyX && pacx <= enemy.enemyX + enemyBitmap.width
                     && pacy + pacBitmap.height >= enemy.enemyY && pacy <= enemy.enemyY + enemyBitmap.height && !enemy.alive) {
-                Toast.makeText(this.context, "Got you", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, "Got you!", Toast.LENGTH_SHORT).show()
                 enemy.alive = true
                 playerDead = true
             }
