@@ -51,6 +51,9 @@ class GameView : View {
         if (!(game!!.coinsInitialized))
             game?.initializeGoldcoins()
 
+        if (!(game!!.enemiesInitialized))
+            game?.initializeEnemies()
+
 
         //Making a new paint object
         val paint = Paint()
@@ -63,11 +66,21 @@ class GameView : View {
         //TODO loop through the list of goldcoins and draw them here
         for (coin in game!!.coins) {
             if (!coin.taken)
-            canvas.drawBitmap(game!!.coinBitmap, coin.coinX!!.toFloat(),
-                    coin.coinY!!.toFloat(), paint)
+                canvas.drawBitmap(game!!.coinBitmap, coin.coinX!!.toFloat(),
+                        coin.coinY!!.toFloat(), paint)
+        }
+        game?.doCollisionCheck()
+        super.onDraw(canvas)
+
+        //loop of enemies
+        for (enemy in game!!.enemies) {
+            if (!enemy.alive)
+                canvas.drawBitmap(game!!.enemyBitmap, enemy.enemyX!!.toFloat(),
+                        enemy.enemyY!!.toFloat(), paint)
         }
 
-        game?.doCollisionCheck()
+
+        game?.doCollisionCheck2()
         super.onDraw(canvas)
     }
 

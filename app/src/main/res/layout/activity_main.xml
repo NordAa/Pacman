@@ -128,4 +128,24 @@
         android:layout_toEndOf="@+id/textView"
         android:text="@string/textview2" />
 
+    <TextView
+        android:id="@+id/levelsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="57dp"
+        android:text="@string/levels" />
+
+    <TextView
+        android:id="@+id/totalPointsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/totalpoints" />
+
 </RelativeLayout>
