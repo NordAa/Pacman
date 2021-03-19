@@ -157,6 +157,7 @@ class Game(private var context: Context, view: TextView, view2: TextView, view3:
         this.w = w
     }
 
+    //direction of PacMan
     fun movePacmanLeft(pixels: Int) {
         if (pacx > 0) {
             pacx = pacx - pixels
